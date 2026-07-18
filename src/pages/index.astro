@@ -1,0 +1,43 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CTAButton from '@/components/CTAButton.astro';
+import company from '@/data/company.json';
+import homepage from '@/data/homepage.json';
+---
+
+<BaseLayout title={company.seo.title} description={company.seo.description}>
+  <div class="content-grid">
+    <div class="col-left">
+      <h2>{homepage.hero.title}</h2>
+      <p>{homepage.hero.subtitle}</p>
+      <p>{homepage.hero.description}</p>
+
+      <CTAButton phone={company.phoneDisplay} label={homepage.hero.cta} />
+
+      <img src="/images/theme/mop.jpeg" alt="Cleaning Garage" loading="lazy" />
+
+      <p>Call today, and let us prove to you that we are the best cleaners in Arizona!</p>
+      <p>{homepage.serviceArea.description}</p>
+
+      <h2>{homepage.hours.title}</h2>
+      <div class="text-center">
+        {homepage.hours.lines.map((line) => (
+          <p>{line}</p>
+        ))}
+      </div>
+    </div>
+
+    <div class="col-right">
+      <img src="/images/theme/sofa.jpg" alt="Sofa in a Clean House" loading="lazy" />
+
+      <h2>Maid Schedules Available</h2>
+      <ul>
+        {homepage.schedules.map((schedule) => (
+          <li>{schedule}</li>
+        ))}
+      </ul>
+
+      <img src="/images/theme/clean-bathroom.jpg" alt="Clean Bathroom" loading="lazy" />
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,11 @@
+---
+export interface Props {
+  phone: string;
+  label?: string;
+}
+
+const { phone, label = `Call Now! ${phone}` } = Astro.props;
+const tel = `tel:${phone.replace(/[^0-9]/g, '')}`;
+---
+
+<a href={tel} class="cta-button">{label}</a>

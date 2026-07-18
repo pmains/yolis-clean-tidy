@@ -1,0 +1,38 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CTAButton from '@/components/CTAButton.astro';
+import company from '@/data/company.json';
+---
+
+<BaseLayout title="Yoli's Clean and Tidy Arizona Cleaning Area" description="We serve the entire Phoenix East Valley including Mesa, Chandler, Gilbert, Scottsdale, Queen Creek, Tempe, Fountain Hills, and Maricopa.">
+  <div class="content-grid">
+    <div class="col-center">
+      <h2>Cleaning Service Area</h2>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div class="margin-left">
+      <img src="/images/theme/mesa-house.jpg" alt="Mesa, Arizona" loading="lazy" />
+    </div>
+
+    <div class="col-center">
+      <p>We travel all over the East Valley. Our cleaning service covers Scottsdale, Fountain Hills, Tempe, Mesa, Gilbert, Chandler, Queen Creek and the Johnson Ranch area.</p>
+
+      <CTAButton phone={company.phoneDisplay} />
+
+      <div class="text-center">
+        <a href="/images/theme/map.png" target="_blank">
+          <img src="/images/theme/map.png" alt="Phoenix Arizona Cleaning Service Map" loading="lazy" />
+        </a>
+        <p>(Click to enlarge)</p>
+      </div>
+
+      <p class="text-center"><strong>Our cleaners also go as far south as Maricopa!</strong></p>
+    </div>
+
+    <div class="margin-right">
+      <img src="/images/theme/scottsdale-lake.jpg" alt="Scottsdale, Arizona" loading="lazy" />
+    </div>
+  </div>
+</BaseLayout>

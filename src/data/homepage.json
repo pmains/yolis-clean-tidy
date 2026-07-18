@@ -1,0 +1,28 @@
+{
+  "hero": {
+    "title": "Home and Office Cleaning Service",
+    "subtitle": "We provide a positive, stress-free cleaning experience.",
+    "description": "We clean homes, offices and garages! Our maids clean your house or office thoroughly, top to bottom.",
+    "cta": "Call Now! 480-279-6730"
+  },
+  "schedules": [
+    "Weekly",
+    "Bi-weekly Cleaning",
+    "One Time Cleaning",
+    "Clean Around your Schedule",
+    "Move In, Move Out Cleaning",
+    "Maid Service Gift Certificate"
+  ],
+  "serviceArea": {
+    "title": "Serving the Phoenix East Valley",
+    "description": "We will come to you, whether you are in Scottsdale, Queen Creek, Gilbert, Mesa, Chandler or elsewhere in the Phoenix valley."
+  },
+  "hours": {
+    "title": "Cleaning Hours",
+    "lines": [
+      "Monday-Friday: 8 AM-Close",
+      "Saturday by appointment",
+      "Closed Sunday"
+    ]
+  }
+}

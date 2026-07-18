@@ -1,0 +1,40 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CTAButton from '@/components/CTAButton.astro';
+import company from '@/data/company.json';
+---
+
+<BaseLayout title="Free Estimate for Home or Office Cleaning in Maricopa County" description="Request a free custom estimate for home or office cleaning services in the Phoenix metro area. Call (480) 279-6730 or get a quick estimate online.">
+  <div class="content-grid">
+    <div class="col-left">
+      <h2>Request A Cleaning Estimate</h2>
+      <p>For Home Or Office Cleaning Services. Enter your requirements and we will quickly email you a custom estimate.</p>
+
+      <CTAButton phone={company.phoneDisplay} />
+
+      <p>Your personal information is safe with us. We value your privacy and will never share it with anyone else.</p>
+
+      <p><img src="/images/theme/patio.jpg" alt="Clean patio service" loading="lazy" /></p>
+    </div>
+
+    <div class="col-right">
+      <div class="text-center">
+        <a href="https://www.emailmeform.com/builder/form/I2Afy6WZbn3D6o2eMO9UB37i" target="_blank" rel="noopener" class="btn-outline estimate-btn">
+          Get an Estimate!
+        </a>
+      </div>
+
+      <p><img src="/images/theme/calculator-vert.jpg" alt="Squeegee window washing service" loading="lazy" /></p>
+
+      <h2>Thank you so much for your cleaning service request!</h2>
+      <p>We look forward to keeping your home or business clean and beautiful.</p>
+
+      <p>
+        {company.name}<br />
+        {company.address.city}, {company.address.state}
+      </p>
+
+      <CTAButton phone={company.phoneDisplay} />
+    </div>
+  </div>
+</BaseLayout>

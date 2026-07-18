@@ -1,0 +1,26 @@
+{
+  "name": "Yoli's Clean and Tidy",
+  "tagline": "Home and Office Cleaning Service",
+  "phone": "(480) 279-6730",
+  "phoneDisplay": "480-279-6730",
+  "phoneLink": "tel:480-279-6730",
+  "email": "contact@yoliscleanandtidy.com",
+  "address": {
+    "street": "",
+    "city": "Mesa",
+    "state": "AZ",
+    "zip": ""
+  },
+  "hours": {
+    "weekdays": "Monday-Friday: 8 AM - Close",
+    "saturday": "Saturday: By Appointment",
+    "sunday": "Closed Sunday"
+  },
+  "social": {
+  },
+  "description": "Yoli's Clean and Tidy provides professional house cleaning, office cleaning, garage cleaning, and move-in/move-out cleaning services throughout the Phoenix East Valley.",
+  "seo": {
+    "title": "Yoli's Clean and Tidy | House Cleaning & Maid Service Phoenix",
+    "description": "Professional house cleaning, office cleaning, and maid service in Mesa, Chandler, Gilbert, Scottsdale, Queen Creek and across the Phoenix metro. Call (480) 279-6730."
+  }
+}

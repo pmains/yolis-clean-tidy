@@ -1,0 +1,105 @@
+---
+import '@/styles/global.css';
+import company from '@/data/company.json';
+
+const { title, description } = Astro.props;
+const pageTitle = title || company.seo.title;
+const pageDescription = description || company.seo.description;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yoliscleanandtidy.com" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet" />
+
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": company.name,
+      "description": company.description,
+      "url": "https://yoliscleanandtidy.com",
+      "telephone": company.phone,
+      "email": company.email,
+      "areaServed": ["Mesa", "Chandler", "Gilbert", "Scottsdale", "Queen Creek", "Tempe", "Fountain Hills", "Phoenix"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": company.address.city,
+        "addressRegion": company.address.state,
+        "addressCountry": "US"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "08:00",
+          "closes": "17:00"
+        }
+      ]
+    })} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <div class="header">
+      <a href="/" class="header-logo">
+        <img src="/images/theme/logo.png" alt="Yoli's Clean and Tidy" />
+      </a>
+      <img id="hamburger" class="hamburger" src="/images/theme/hamburger.svg.png" alt="Menu" />
+    </div>
+
+    <div class="page">
+      <nav id="nav" class="nav">
+        <ul class="nav-list">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/services/" class="nav-link">Services</a></li>
+          <li><a href="/locations/" class="nav-link">Locations</a></li>
+          <li><a href="/contact/" class="nav-link">Contact</a></li>
+          <li><a href="/estimate/" class="nav-link">Free Estimate</a></li>
+          <li><a href="/specials/" class="nav-link">Specials</a></li>
+          <li><a href="/jobs/" class="nav-link">Jobs</a></li>
+        </ul>
+      </nav>
+
+      <div class="content">
+        <slot />
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2023-2026 Yoli's Clean and Tidy. Mesa, AZ. All rights reserved.</p>
+    </div>
+
+    <script>
+      // Hamburger menu toggle
+      const hamburger = document.getElementById('hamburger');
+      const nav = document.getElementById('nav');
+      if (hamburger && nav) {
+        hamburger.addEventListener('click', () => {
+          nav.classList.toggle('open');
+        });
+      }
+    </script>
+  </body>
+</html>

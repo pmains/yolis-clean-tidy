@@ -1,0 +1,34 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CTAButton from '@/components/CTAButton.astro';
+import company from '@/data/company.json';
+---
+
+<BaseLayout title="Contact Yoli's Clean and Tidy" description="Contact Yoli's Clean and Tidy in Mesa, AZ. Call (480) 279-6730 or email contact@yoliscleanandtidy.com for a free estimate.">
+  <div class="content-grid">
+    <div class="margin-left">
+      <img src="/images/theme/yoli-hip.jpg" alt="Yoli's Clean and Tidy Cleaning Service" loading="lazy" />
+    </div>
+
+    <div class="col-center text-center">
+      <CTAButton phone={company.phoneDisplay} />
+
+      <h2>Email Us</h2>
+      <p><a href={`mailto:${company.email}`}>{company.email}</a></p>
+
+      <h2>Business Hours</h2>
+      <p>Monday - Friday 8:00am - 8:00pm</p>
+      <p>Saturday - By Appointment</p>
+      <p>Closed Sunday</p>
+
+      <p>
+        {company.name} Arizona<br />
+        {company.address.city}, {company.address.state}
+      </p>
+    </div>
+
+    <div class="margin-right">
+      <img src="/images/theme/sponge.jpg" alt="Yoli's Clean and Tidy Cleaning Employees" loading="lazy" />
+    </div>
+  </div>
+</BaseLayout>

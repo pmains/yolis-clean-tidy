@@ -1,0 +1,105 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CTAButton from '@/components/CTAButton.astro';
+import company from '@/data/company.json';
+import { getCollection } from 'astro:content';
+
+const services = await getCollection('services');
+services.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
+---
+
+<BaseLayout title="Yoli's Clean and Tidy Arizona Cleaning Services" description="Professional residential, commercial, move-in/move-out, post-construction, window, carpet, and garage cleaning services in the Phoenix East Valley.">
+  <div class="content-grid">
+    <div class="col-center">
+      <h2>Office and Home Cleaning</h2>
+      <p>At Yoli's Clean and Tidy, no cleaning job is too big!</p>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div class="margin-left">
+      <img src="/images/theme/kitchen-vert.jpg" alt="Deep Cleaning" loading="lazy" />
+    </div>
+
+    <div class="col-center">
+      <CTAButton phone={company.phoneDisplay} />
+
+      <h2>Residential Cleaning</h2>
+      <p>Yoli's Clean and Tidy cleans thoroughly. We keep our customers SATISFIED!</p>
+      <p>We clean homes, apartments and condos. We work around your schedule.</p>
+      <p>We bring our own equipment, but if you prefer we can use your supplies.</p>
+
+      <CTAButton phone={company.phoneDisplay} />
+
+      <h2>Commercial Cleaning</h2>
+    </div>
+
+    <div class="margin-right">
+      <img src="/images/theme/house-vert.jpg" alt="House Cleaning" loading="lazy" />
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div class="margin-left">
+      <img src="/images/theme/stove-dirty.jpg" alt="Dirty Stove Deep Cleaning" loading="lazy" />
+    </div>
+
+    <div class="col-center">
+      <p>Yoli's Clean and Tidy cleans commercial businesses.</p>
+      <p>We service executive offices, commercial and office buildings, and stores.</p>
+      <p>We provide the best cleaning in the valley because we care.</p>
+      <div class="text-center">
+        <img src="/images/theme/office.jpg" alt="Office Cleaning Service" loading="lazy" />
+      </div>
+    </div>
+
+    <div class="margin-right">
+      <img src="/images/theme/stove-clean.jpg" alt="Clean Stove" loading="lazy" />
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div class="margin-left">
+      <img src="/images/theme/shower-dirty.jpg" alt="Shower and Bathroom Deep Cleaning" loading="lazy" />
+    </div>
+
+    <div class="col-center">
+      <h2>Move out / Move in</h2>
+      <p>We work with valley Realtors. They know how important it is to WOW a client.</p>
+      <p>Relax, because we show up and do the job right.</p>
+      <p>Get that extra edge in this extremely competitive market.</p>
+
+      <h2>Post Construction Clean-up</h2>
+      <p>Yoli's Clean and Tidy removes all dust and debris after construction and renovations.</p>
+      <p>We clean every room and add finishing touches, shine and sheen before the client moves in.</p>
+      <p>We offer special packages to Real Estates properties. Please call us for a free estimate.</p>
+    </div>
+
+    <div class="margin-right">
+      <img src="/images/theme/shower-clean.jpg" alt="Clean Shower" loading="lazy" />
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div class="margin-left">
+      <img src="/images/theme/window-before.jpg" alt="Dirty Window Cleaning" loading="lazy" />
+    </div>
+
+    <div class="col-center">
+      <CTAButton phone={company.phoneDisplay} />
+
+      <h2>Professional Window Cleaning</h2>
+      <p>We clean and inspect every window so it's done right. Why don't other companies clean the screens? Rest assured that we do.</p>
+
+      <h2>Carpet Cleaning</h2>
+      <p>Our Truck Mounted Carpet Cleaning System is very thorough. We proudly show up on time and do a great job with no surprises.</p>
+
+      <h2>Garages</h2>
+      <p>We use a compressor and hot water to clean your garage floor. We take out the trash for you and tidy up odds and ends.</p>
+    </div>
+
+    <div class="margin-right">
+      <img src="/images/theme/window-after.jpg" alt="Clean Window Cleaning" loading="lazy" />
+    </div>
+  </div>
+</BaseLayout>

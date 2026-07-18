@@ -1,0 +1,23 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CTAButton from '@/components/CTAButton.astro';
+import company from '@/data/company.json';
+---
+
+<BaseLayout title="Special Deal on Home or Office Cleaning" description="Current specials and coupons for Yoli's Clean and Tidy. Print our coupon and save on your next home or office cleaning in the Phoenix East Valley.">
+  <div class="content-grid">
+    <div class="col-center">
+      <h2>Specials</h2>
+      <p>Below is the current coupon. Please print it out and give it to your cleaners with your payment.</p>
+
+      <div class="text-center">
+        <a href="/images/theme/coupon.gif" target="_blank">
+          <img src="/images/theme/coupon.gif" alt="Home cleaning specials Phoenix Mesa Arizona" loading="lazy" />
+        </a>
+        <p>(Click to enlarge and print)</p>
+      </div>
+
+      <CTAButton phone={company.phoneDisplay} />
+    </div>
+  </div>
+</BaseLayout>

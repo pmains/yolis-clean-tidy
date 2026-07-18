@@ -1,0 +1,111 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CTAButton from '@/components/CTAButton.astro';
+import company from '@/data/company.json';
+---
+
+<BaseLayout title="Work for Yoli's Clean and Tidy Arizona Cleaning Service" description="Join the Yoli's Clean and Tidy team. We're always looking for friendly, courteous cleaning professionals in the Phoenix East Valley.">
+  <div class="content-grid">
+    <div class="col-left">
+      <h2>Looking for Work?</h2>
+      <p>We are always looking for cleaning professionals. We are proud to offer house cleaners whom are friendly, courteous, and respectful of our clients homes.</p>
+
+      <CTAButton phone={company.phoneDisplay} />
+
+      <p>We clean Monday through Friday, usually from 8am to 4pm. We clean all types of houses, apartments, condos and offices. We may clean Saturdays or Sundays by appointment.</p>
+      <p>Please fill out the form to the right and we'll get back to you soon.</p>
+
+      <p><img src="/images/theme/broom.jpg" alt="Working for Yoli's Clean and Tidy" loading="lazy" /></p>
+    </div>
+    <div class="col-right">
+      <p><em>*All Fields are required.</em></p>
+
+      <form id="jobs-form" method="POST" action="/api/forms/jobs">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Best Phone Number</label>
+          <input type="tel" id="phone" name="phone" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="form-group">
+          <label>Do you have transportation?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="transportation" value="Yes" required /> Yes</label>
+            <label><input type="radio" name="transportation" value="No" /> No</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Can you commute to the far East Valley to clean houses on a daily basis?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="can_commute" value="Yes" required /> Yes</label>
+            <label><input type="radio" name="can_commute" value="No" /> No</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cross_streets">What are the major cross streets of your residence in the East Valley?</label>
+          <textarea id="cross_streets" name="cross_streets" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="availability">What days and hours are you available?</label>
+          <textarea id="availability" name="availability" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="about">Tell us about yourself</label>
+          <textarea id="about" name="about" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn-outline">Submit</button>
+        </div>
+      </form>
+
+      <div id="form-success" style="display:none;">
+        <h2>Thank You!</h2>
+        <p>Your application has been submitted. We'll get back to you soon.</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('jobs-form');
+  const success = document.getElementById('form-success');
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const body = Object.fromEntries(data.entries());
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+
+        if (res.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          alert('Something went wrong. Please try again or call us directly.');
+        }
+      } catch {
+        alert('Something went wrong. Please try again or call us directly.');
+      }
+    });
+  }
+</script>

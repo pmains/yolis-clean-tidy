@@ -1,0 +1,48 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  href: string;
+  image?: string;
+}
+
+const { title, description, href, image } = Astro.props;
+---
+
+<div class="service-card">
+  {image && (
+    <a href={href}>
+      <img src={image} alt={title} loading="lazy" />
+    </a>
+  )}
+  <h3><a href={href}>{title}</a></h3>
+  <p>{description}</p>
+  <a href={href} class="btn-outline">Learn More</a>
+</div>
+
+<style>
+  .service-card {
+    margin-bottom: 1.5em;
+    padding-bottom: 1.5em;
+    border-bottom: 1px solid #eee;
+  }
+
+  .service-card img {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 0.5em;
+  }
+
+  .service-card h3 {
+    margin-bottom: 0.3em;
+  }
+
+  .service-card h3 a {
+    text-decoration: none;
+    color: #d14daa;
+  }
+
+  .service-card p {
+    margin-bottom: 0.8em;
+  }
+</style>
