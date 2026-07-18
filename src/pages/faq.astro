@@ -1,0 +1,101 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CTAButton from '@/components/CTAButton.astro';
+import company from '@/data/company.json';
+
+const faqs = [
+  {
+    question: "What areas do you serve?",
+    answer: "We clean homes and offices throughout the Phoenix East Valley including Mesa, Chandler, Gilbert, Scottsdale, Queen Creek, Tempe, and Fountain Hills. We also travel as far south as Maricopa."
+  },
+  {
+    question: "What cleaning services do you offer?",
+    answer: "We offer regular weekly and bi-weekly maid service, one-time deep cleaning, move-in and move-out cleaning, office cleaning, garage cleaning, window cleaning, carpet cleaning, and post-construction clean-up."
+  },
+  {
+    question: "Do you bring your own cleaning supplies and equipment?",
+    answer: "Yes, we bring all of our own cleaning equipment and supplies. If you prefer we use your supplies instead, we're happy to accommodate that."
+  },
+  {
+    question: "What are your cleaning hours?",
+    answer: "We clean Monday through Friday, usually from 8am to 4pm. Saturday cleanings are available by appointment. We are closed on Sunday."
+  },
+  {
+    question: "How do I get a cleaning estimate?",
+    answer: `You can call us at (480) 279-6730 or fill out our <a href="/estimate/">online estimate form</a>. We'll review your needs and provide a custom quote quickly.`
+  },
+  {
+    question: "Do you offer recurring cleaning schedules?",
+    answer: "Yes, we offer weekly, bi-weekly, and monthly cleaning schedules. We also offer one-time cleanings. We work around your schedule."
+  },
+  {
+    question: "Do you clean offices and commercial spaces?",
+    answer: "Yes, we provide commercial cleaning for executive offices, office buildings, stores, and other commercial spaces throughout the East Valley."
+  },
+  {
+    question: "Is your cleaning service insured?",
+    answer: "Yes, Yoli's Clean and Tidy is a professional cleaning service. Please call us for details about our insurance coverage."
+  },
+];
+---
+
+<BaseLayout title="Frequently Asked Questions | Yoli's Clean and Tidy" description="Common questions about our house cleaning, maid service, and office cleaning in the Phoenix East Valley. Get answers about services, pricing, scheduling, and more.">
+  <!-- FAQ Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.answer
+      }
+    }))
+  })} />
+
+  <div class="content-grid">
+    <div class="col-center">
+      <h2>Frequently Asked Questions</h2>
+      <p>Common questions about our cleaning services in the Phoenix East Valley.</p>
+
+      <div class="faq-list">
+        {faqs.map((faq, i) => (
+          <details class="faq-item content-panel">
+            <summary class="faq-question"><strong>{faq.question}</strong></summary>
+            <p class="faq-answer" style="margin-top:10px;" set:html={faq.answer}></p>
+          </details>
+        ))}
+      </div>
+
+      <CTAButton phone={company.phoneDisplay} />
+
+      <p class="text-center">Have a different question? <a href="/contact/">Contact us</a> or <a href={`tel:${company.phone}`}>call (480) 279-6730</a>.</p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .faq-item {
+    cursor: pointer;
+    margin-bottom: 8px;
+  }
+
+  .faq-item[open] {
+    padding-bottom: 12px;
+  }
+
+  .faq-question {
+    cursor: pointer;
+    color: var(--purple-heading);
+    font-size: 1.05em;
+  }
+
+  .faq-question::-webkit-details-marker {
+    color: var(--teal);
+  }
+
+  .faq-answer {
+    line-height: 1.6;
+  }
+</style>
