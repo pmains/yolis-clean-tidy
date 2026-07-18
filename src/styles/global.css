@@ -74,7 +74,20 @@ img {
 .hamburger {
   display: none;
   cursor: pointer;
-  padding: 10px;
+  background: none;
+  border: none;
+  padding: 14px;
+  flex-direction: column;
+  gap: 5px;
+  justify-self: end;
+}
+
+.hamburger-bar {
+  display: block;
+  width: 28px;
+  height: 4px;
+  background-color: var(--white);
+  border-radius: 2px;
 }
 
 /* Navigation */
@@ -391,7 +404,7 @@ textarea::placeholder {
   }
 
   .hamburger {
-    display: block;
+    display: flex;
   }
 
   .page {
