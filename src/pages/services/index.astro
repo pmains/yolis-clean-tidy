@@ -18,7 +18,7 @@ services.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
         <h2>Our Cleaning Services</h2>
         <ul class="check-list">
           {services.map((s) => (
-            <li><a href="/services/{s.data.slug}/">{s.data.title}</a></li>
+            <li><a href={`/services/${s.data.slug}/`}>{s.data.title}</a></li>
           ))}
         </ul>
       </div>
@@ -27,7 +27,7 @@ services.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
 
   <div class="content-grid">
     <div class="margin-left">
-      <img src="/images/theme/kitchen-vert.jpg" alt="Deep Cleaning" loading="lazy" />
+      <img src="/images/theme/kitchen-vert.jpg" alt="Deep kitchen cleaning by professional house cleaners in Phoenix" loading="lazy" />
     </div>
 
     <div class="col-center">
@@ -44,13 +44,13 @@ services.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
     </div>
 
     <div class="margin-right">
-      <img src="/images/theme/house-vert.jpg" alt="House Cleaning" loading="lazy" />
+      <img src="/images/theme/house-vert.jpg" alt="Residential house cleaning service in the Phoenix East Valley" loading="lazy" />
     </div>
   </div>
 
   <div class="content-grid">
     <div class="margin-left">
-      <img src="/images/theme/stove-dirty.jpg" alt="Dirty Stove Deep Cleaning" loading="lazy" />
+      <img src="/images/theme/stove-dirty.jpg" alt="Dirty stove before professional deep cleaning service" loading="lazy" />
     </div>
 
     <div class="col-center">
@@ -58,18 +58,18 @@ services.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
       <p>We service executive offices, commercial and office buildings, and stores.</p>
       <p>We provide the best cleaning in the valley because we care.</p>
       <div class="text-center">
-        <img src="/images/theme/office.jpg" alt="Office Cleaning Service" loading="lazy" />
+        <img src="/images/theme/office.jpg" alt="Professional office cleaning service for Phoenix businesses" loading="lazy" />
       </div>
     </div>
 
     <div class="margin-right">
-      <img src="/images/theme/stove-clean.jpg" alt="Clean Stove" loading="lazy" />
+      <img src="/images/theme/stove-clean.jpg" alt="Clean stove after professional kitchen cleaning" loading="lazy" />
     </div>
   </div>
 
   <div class="content-grid">
     <div class="margin-left">
-      <img src="/images/theme/shower-dirty.jpg" alt="Shower and Bathroom Deep Cleaning" loading="lazy" />
+      <img src="/images/theme/shower-dirty.jpg" alt="Dirty shower before professional bathroom deep cleaning" loading="lazy" />
     </div>
 
     <div class="col-center">
@@ -85,13 +85,13 @@ services.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
     </div>
 
     <div class="margin-right">
-      <img src="/images/theme/shower-clean.jpg" alt="Clean Shower" loading="lazy" />
+      <img src="/images/theme/shower-clean.jpg" alt="Clean shower after professional bathroom cleaning service" loading="lazy" />
     </div>
   </div>
 
   <div class="content-grid">
     <div class="margin-left">
-      <img src="/images/theme/window-before.jpg" alt="Dirty Window Cleaning" loading="lazy" />
+      <img src="/images/theme/window-before.jpg" alt="Dirty windows before professional window cleaning" loading="lazy" />
     </div>
 
     <div class="col-center">
@@ -108,7 +108,7 @@ services.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
     </div>
 
     <div class="margin-right">
-      <img src="/images/theme/window-after.jpg" alt="Clean Window Cleaning" loading="lazy" />
+      <img src="/images/theme/window-after.jpg" alt="Clean windows after professional window cleaning service" loading="lazy" />
     </div>
   </div>
 </BaseLayout>

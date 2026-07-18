@@ -17,7 +17,7 @@ areas.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
 
   <div class="content-grid">
     <div class="margin-left">
-      <img src="/images/theme/mesa-house.jpg" alt="Mesa, Arizona" loading="lazy" />
+      <img src="/images/theme/mesa-house.jpg" alt="House cleaning service in Mesa, AZ" loading="lazy" />
     </div>
 
     <div class="col-center">
@@ -27,7 +27,7 @@ areas.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
         <h2>Cities We Serve</h2>
         <ul class="check-list">
           {areas.map((a) => (
-            <li><a href="/locations/{a.data.slug}/">Cleaning Service in {a.data.title}, AZ</a></li>
+            <li><a href={`/locations/${a.data.slug}/`}>Cleaning Service in {a.data.title}, AZ</a></li>
           ))}
         </ul>
       </div>
@@ -36,7 +36,7 @@ areas.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
 
       <div class="text-center">
         <a href="/images/theme/map.png" target="_blank">
-          <img src="/images/theme/map.png" alt="Phoenix Arizona Cleaning Service Map" loading="lazy" />
+          <img src="/images/theme/map.png" alt="Phoenix East Valley cleaning service area map - Mesa, Chandler, Gilbert, Scottsdale, Queen Creek" loading="lazy" />
         </a>
         <p>(Click to enlarge)</p>
       </div>
@@ -45,7 +45,7 @@ areas.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
     </div>
 
     <div class="margin-right">
-      <img src="/images/theme/scottsdale-lake.jpg" alt="Scottsdale, Arizona" loading="lazy" />
+      <img src="/images/theme/scottsdale-lake.jpg" alt="Scottsdale, Arizona - house cleaning service area" loading="lazy" />
     </div>
   </div>
 </BaseLayout>
