@@ -4,13 +4,17 @@
 :root {
   --teal: #4dd1c6;
   --teal-dark: #3ab5ab;
+  --teal-hover: #2ea89e;
   --purple: #aa4dd1;
   --purple-dark: #8b3aaf;
   --purple-heading: #d14daa;
   --white: #ffffff;
   --bg: #ffffff;
   --text: #333333;
-  --text-light: #666666;
+  --text-light: #777777;
+  --secondary: #777777;
+  --light-bg: #f7f7f7;
+  --border: #e5e5e5;
   --font-body: Avenir, 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-heading: 'Berkshire Swash', Georgia, serif;
   --max-width: 980px;
@@ -104,12 +108,12 @@ img {
 }
 
 .nav-link:hover {
-  background-color: var(--purple);
+  background-color: var(--teal-hover);
   color: var(--white);
 }
 
 .nav-link.active {
-  background-color: var(--purple);
+  background-color: var(--teal-hover);
 }
 
 /* Page Layout */
@@ -191,6 +195,24 @@ img {
 .content-grid .col-right img,
 .content-grid .col-center img {
   width: 100%;
+  display: block;
+  margin-bottom: 15px;
+}
+
+/* Section card (info panel) */
+.content-panel {
+  background: var(--light-bg);
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.content-panel :first-child {
+  margin-top: 0;
+}
+
+.content-panel :last-child {
+  margin-bottom: 0;
 }
 
 /* CTA Button */
@@ -217,6 +239,19 @@ img {
 
 .cta-button:first-child {
   margin-top: 0;
+}
+
+/* Schedule list */
+.content ul.check-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+.content ul.check-list li::before {
+  content: "\2713";
+  color: var(--teal);
+  font-weight: bold;
+  margin-right: 6px;
 }
 
 /* Form Buttons */
@@ -278,12 +313,31 @@ img {
   margin-right: 20px;
 }
 
+.radio-label {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 4px;
+  margin-right: 24px;
+  cursor: pointer;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px 15px !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #aaa;
+  font-size: 0.9em;
+}
+
 /* Footer */
 .footer {
   text-align: center;
   padding: 20px;
   margin-top: 30px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border);
   color: var(--text-light);
   font-size: 0.9em;
 }
@@ -329,5 +383,12 @@ img {
 
   .content-grid img {
     padding: 0 10px;
+  }
+
+  .content-grid .col-left p,
+  .content-grid .col-right p,
+  .content-grid .col-center p {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }

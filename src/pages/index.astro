@@ -19,23 +19,27 @@ import homepage from '@/data/homepage.json';
       <p>Call today, and let us prove to you that we are the best cleaners in Arizona!</p>
       <p>{homepage.serviceArea.description}</p>
 
-      <h2>{homepage.hours.title}</h2>
-      <div class="text-center">
-        {homepage.hours.lines.map((line) => (
-          <p>{line}</p>
-        ))}
+      <div class="content-panel">
+        <h2>{homepage.hours.title}</h2>
+        <div class="text-center">
+          {homepage.hours.lines.map((line) => (
+            <p>{line}</p>
+          ))}
+        </div>
       </div>
     </div>
 
     <div class="col-right">
       <img src="/images/theme/sofa.jpg" alt="Sofa in a Clean House" loading="lazy" />
 
-      <h2>Maid Schedules Available</h2>
-      <ul>
-        {homepage.schedules.map((schedule) => (
-          <li>{schedule}</li>
-        ))}
-      </ul>
+      <div class="content-panel">
+        <h2>Maid Schedules Available</h2>
+        <ul class="check-list">
+          {homepage.schedules.map((schedule) => (
+            <li>{schedule}</li>
+          ))}
+        </ul>
+      </div>
 
       <img src="/images/theme/clean-bathroom.jpg" alt="Clean Bathroom" loading="lazy" />
     </div>
