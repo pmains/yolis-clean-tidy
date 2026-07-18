@@ -343,6 +343,7 @@ img {
   font-weight: bold;
   cursor: pointer;
   display: inline-block;
+  margin: 20px 0;
 }
 
 .estimate-btn:hover {
