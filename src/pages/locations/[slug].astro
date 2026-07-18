@@ -1,0 +1,56 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CTAButton from '@/components/CTAButton.astro';
+import company from '@/data/company.json';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const areas = await getCollection('serviceAreas');
+  return areas.map((area) => ({
+    params: { slug: area.data.slug },
+    props: { area },
+  }));
+}
+
+const { area } = Astro.props;
+const { data } = area;
+const { Content } = await render(area);
+
+const pageTitle = `House Cleaning ${data.title}, AZ | Yoli's Clean and Tidy`;
+const pageDescription = data.description;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <!-- Breadcrumb schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@position": 1, "@type": "ListItem", "name": "Home", "item": "https://yoliscleanandtidy.com/" },
+      { "@position": 2, "@type": "ListItem", "name": "Service Areas", "item": "https://yoliscleanandtidy.com/locations/" },
+      { "@position": 3, "@type": "ListItem", "name": data.title }
+    ]
+  })} />
+
+  <div class="content-grid">
+    <div class="col-center">
+      <h2>Cleaning Service in {data.title}, AZ</h2>
+
+      <div class="content-panel">
+        <Content />
+      </div>
+
+      <CTAButton phone={company.phoneDisplay} />
+
+      <p>Yoli's Clean and Tidy provides thorough, reliable cleaning services to homeowners, renters, and businesses throughout {data.title} and the surrounding East Valley.</p>
+
+      {data.image && (
+        <img src={data.image} alt={`${data.title}, Arizona`} loading="lazy" />
+      )}
+
+      <p class="subtext text-center" style="margin-top:12px;">
+        <a href="/locations/">← Back to all service areas</a>
+      </p>
+    </div>
+  </div>
+</BaseLayout>

@@ -326,6 +326,23 @@ img {
   padding: 14px 15px !important;
 }
 
+.estimate-btn {
+  color: var(--purple);
+  border: 1px solid var(--purple);
+  border-radius: 10px;
+  padding: 10px 24px;
+  background-color: #f9f0fc;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.estimate-btn:hover {
+  background-color: var(--purple);
+  color: white;
+}
+
 input::placeholder,
 textarea::placeholder {
   color: #aaa;

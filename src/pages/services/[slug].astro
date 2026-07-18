@@ -1,0 +1,70 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CTAButton from '@/components/CTAButton.astro';
+import company from '@/data/company.json';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map((service) => ({
+    params: { slug: service.data.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const { data } = service;
+const { Content } = await render(service);
+
+const pageTitle = `${data.title} | Yoli's Clean and Tidy`;
+const pageDescription = data.description;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <!-- Breadcrumb schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://yoliscleanandtidy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://yoliscleanandtidy.com/services/" },
+      { "@type": "ListItem", "position": 3, "name": data.title }
+    ]
+  })} />
+
+  <!-- Service schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": `${data.title} by Yoli's Clean and Tidy`,
+    "description": data.description,
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": company.name,
+      "url": "https://yoliscleanandtidy.com",
+      "telephone": company.phone,
+      "areaServed": ["Mesa", "Chandler", "Gilbert", "Scottsdale", "Queen Creek", "Tempe", "Fountain Hills"]
+    },
+    "areaServed": data.keywords.filter(k => k.includes('Phoenix') || k.includes('Mesa') || k.includes('Chandler') || k.includes('Gilbert') || k.includes('Scottsdale'))
+  })} />
+
+  <div class="content-grid">
+    <div class="col-center">
+      <h2>{data.title}</h2>
+
+      <div class="content-panel">
+        <Content />
+      </div>
+
+      <CTAButton phone={company.phoneDisplay} />
+
+      {data.image && (
+        <img src={data.image} alt={data.title} loading="lazy" />
+      )}
+
+      <p class="subtext text-center" style="margin-top:12px;">
+        <a href="/services/">← Back to all services</a>
+      </p>
+    </div>
+  </div>
+</BaseLayout>

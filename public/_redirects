@@ -1,0 +1,16 @@
+# Old Pelican pages → new clean URLs
+/pages/yolis-clean-and-tidy-arizona-cleaning-services.html /services/ 301
+/pages/yolis-clean-and-tidy-arizona-cleaning-area.html /locations/ 301
+/pages/contact-yolis-clean-and-tidy.html /contact/ 301
+/pages/free-estimate-for-home-or-office-cleaning-in-maricopa-county-arizona.html /estimate/ 301
+/pages/special-deal-on-home-or-office-cleaning.html /specials/ 301
+/pages/work-for-yolis-clean-and-tidy-arizona-cleaning-service.html /jobs/ 301
+
+# Old theme assets (no longer used)
+/theme/* / 301
+
+# Force one canonical domain — uncomment one of these:
+# www → root
+# www.yoliscleanandtidy.com/* https://yoliscleanandtidy.com/:splat 301
+# root → www
+# https://yoliscleanandtidy.com/* https://www.yoliscleanandtidy.com/:splat 301
