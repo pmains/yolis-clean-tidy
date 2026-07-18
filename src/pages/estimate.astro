@@ -8,7 +8,7 @@ import company from '@/data/company.json';
   <div class="content-grid">
     <div class="col-left">
       <h2>Request A Cleaning Estimate</h2>
-      <p>For Home Or Office Cleaning Services. Enter your requirements and we will quickly email you a custom estimate.</p>
+      <p>For home or office cleaning services. Tell us what you need and we'll email you a custom estimate quickly.</p>
 
       <CTAButton phone={company.phoneDisplay} />
 
@@ -18,23 +18,116 @@ import company from '@/data/company.json';
     </div>
 
     <div class="col-right">
-      <div class="text-center">
-        <button type="button" class="estimate-btn" onclick="window.open('https://www.emailmeform.com/builder/form/I2Afy6WZbn3D6o2eMO9UB37i')">
-          Get an Estimate!
-        </button>
+      <form id="estimate-form" method="POST" action="/api/forms/estimate" class="content-panel">
+        <h2 style="margin-top:0;">Get Your Free Estimate</h2>
+
+        <div class="form-group">
+          <label for="name">Your Name *</label>
+          <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Best Phone Number *</label>
+          <input type="tel" id="phone" name="phone" placeholder="480-555-1234" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="property_type">Property Type *</label>
+          <select id="property_type" name="property_type" required class="form-select">
+            <option value="">Select one...</option>
+            <option value="house">House</option>
+            <option value="apartment">Apartment / Condo</option>
+            <option value="office">Office / Commercial</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="service_needed">Service Needed *</label>
+          <select id="service_needed" name="service_needed" required class="form-select">
+            <option value="">Select one...</option>
+            <option value="regular">Regular Cleaning</option>
+            <option value="deep">Deep Cleaning</option>
+            <option value="move">Move In / Move Out</option>
+            <option value="office">Office Cleaning</option>
+            <option value="garage">Garage Cleaning</option>
+            <option value="windows">Window Cleaning</option>
+            <option value="carpet">Carpet Cleaning</option>
+            <option value="post-construction">Post Construction Clean-up</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="size">Approximate Size</label>
+          <input type="text" id="size" name="size" placeholder="e.g. 1,500 sq ft, 2 bedroom, etc." />
+        </div>
+
+        <div class="form-group">
+          <label for="frequency">How Often?</label>
+          <select id="frequency" name="frequency" class="form-select">
+            <option value="">Select one...</option>
+            <option value="one-time">One Time</option>
+            <option value="weekly">Weekly</option>
+            <option value="biweekly">Bi-weekly</option>
+            <option value="monthly">Monthly</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="preferred_days">Preferred Days</label>
+          <input type="text" id="preferred_days" name="preferred_days" placeholder="e.g. Weekdays, Mondays, flexible" />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Details *</label>
+          <textarea id="message" name="message" placeholder="Tell us what you need cleaned, areas of focus, any special requests..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn-outline submit-btn">Request Estimate</button>
+        </div>
+      </form>
+
+      <div id="estimate-success" style="display:none;" class="content-panel text-center">
+        <h2 style="margin-top:0;">Thank You!</h2>
+        <p>Your estimate request has been submitted. We'll review your details and get back to you soon with a custom quote.</p>
+        <p>In the meantime, feel free to call us at <a href="tel:480-279-6730"><strong>480-279-6730</strong></a></p>
       </div>
-
-      <p><img src="/images/theme/calculator-vert.jpg" alt="Squeegee window washing service" loading="lazy" /></p>
-
-      <h2>Thank you so much for your cleaning service request!</h2>
-      <p>We look forward to keeping your home or business clean and beautiful.</p>
-
-      <p>
-        {company.name}<br />
-        {company.address.city}, {company.address.state}
-      </p>
-
-      <CTAButton phone={company.phoneDisplay} />
     </div>
   </div>
 </BaseLayout>
+
+<script>
+  const form = document.getElementById('estimate-form');
+  const success = document.getElementById('estimate-success');
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const body = Object.fromEntries(data.entries());
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+
+        if (res.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          alert('Something went wrong. Please try again or call us directly.');
+        }
+      } catch {
+        alert('Something went wrong. Please try again or call us directly.');
+      }
+    });
+  }
+</script>

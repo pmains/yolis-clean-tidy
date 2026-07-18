@@ -294,6 +294,13 @@ img {
   font-size: 1em;
 }
 
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 2px rgba(77, 209, 198, 0.25);
+}
+
 .form-group textarea {
   resize: vertical;
   min-height: 80px;
@@ -341,6 +348,23 @@ img {
 .estimate-btn:hover {
   background-color: var(--purple);
   color: white;
+}
+
+.form-select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--purple);
+  border-radius: 5px;
+  font-family: var(--font-body);
+  font-size: 1em;
+  background: white;
+  cursor: pointer;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 2px rgba(77, 209, 198, 0.25);
 }
 
 input::placeholder,
