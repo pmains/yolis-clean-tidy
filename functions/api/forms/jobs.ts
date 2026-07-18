@@ -104,8 +104,8 @@ Availability: ${body.availability}
 About: ${body.about}
     `.trim();
 
-    const resendApiKey = context.env.RESEND_API_KEY;
-    const notifyEmail = context.env.NOTIFY_EMAIL || 'peter.mains@gmail.com';
+    const resendApiKey = context.env.YOLIS_RESEND_API_KEY;
+    const notifyEmail = context.env.YOLIS_NOTIFY_EMAIL || 'peter.mains@gmail.com';
 
     if (resendApiKey) {
       const resendRes = await fetch('https://api.resend.com/emails', {

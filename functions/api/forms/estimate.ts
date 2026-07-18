@@ -107,8 +107,8 @@ Preferred Days: ${body.preferred_days || 'Not specified'}
 Details: ${body.message}
     `.trim();
 
-    const resendApiKey = context.env.RESEND_API_KEY;
-    const notifyEmail = context.env.NOTIFY_EMAIL || 'peter.mains@gmail.com';
+    const resendApiKey = context.env.YOLIS_RESEND_API_KEY;
+    const notifyEmail = context.env.YOLIS_NOTIFY_EMAIL || 'peter.mains@gmail.com';
 
     if (resendApiKey) {
       const resendRes = await fetch('https://api.resend.com/emails', {
