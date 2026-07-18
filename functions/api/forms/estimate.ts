@@ -2,7 +2,8 @@
  * Estimate form handler (Cloudflare Pages Function)
  * POST /api/forms/estimate
  *
- * Receives estimate requests and sends them via email.
+ * Receives estimate requests, stores them in Airtable,
+ * and sends a notification email.
  */
 
 interface EstimateRequest {
@@ -15,6 +16,51 @@ interface EstimateRequest {
   frequency: string;
   preferred_days: string;
   message: string;
+}
+
+const AIRTABLE_API = 'https://api.airtable.com/v0';
+
+async function submitToAirtable(body: EstimateRequest, env: Record<string, string | undefined>): Promise<void> {
+  const apiKey = env.YOLIS_AIRTABLE_API_KEY;
+  const baseId = env.YOLIS_AIRTABLE_BASE_ID;
+  const tableName = env.YOLIS_AIRTABLE_ESTIMATES_TABLE || 'Estimates';
+
+  if (!apiKey || !baseId) {
+    console.log('Airtable not configured — skipping Airtable submission');
+    return;
+  }
+
+  const payload = {
+    records: [
+      {
+        fields: {
+          Name: body.name,
+          Phone: body.phone,
+          Email: body.email,
+          'Property Type': body.property_type,
+          'Service Needed': body.service_needed,
+          Size: body.size || '',
+          Frequency: body.frequency || '',
+          'Preferred Days': body.preferred_days || '',
+          Message: body.message,
+        },
+      },
+    ],
+  };
+
+  const res = await fetch(`${AIRTABLE_API}/${baseId}/${encodeURIComponent(tableName)}`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const errBody = await res.text();
+    console.error('Airtable API error:', res.status, errBody);
+  }
 }
 
 export async function onRequest(context) {
@@ -38,7 +84,14 @@ export async function onRequest(context) {
       }
     }
 
-    // Build email content
+    // Submit to Airtable (non-blocking — don't fail the request if it errors)
+    try {
+      await submitToAirtable(body, context.env);
+    } catch (airtableErr) {
+      console.error('Airtable submission failed:', airtableErr);
+    }
+
+    // Send notification email via Resend
     const subject = `New Estimate Request from ${body.name}`;
     const text = `
 Estimate Request — Yoli's Clean and Tidy

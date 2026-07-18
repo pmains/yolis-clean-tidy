@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homepage Color Preview — Yoli's Clean & Tidy</title>
+<link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body { font-family: 'Plus Jakarta Sans', Avenir, sans-serif; background: #e8e8e8; padding: 30px; }
+  h1 { font-family: 'Berkshire Swash', serif; font-size: 1.6em; text-align: center; color: #333; margin-bottom: 5px; }
+  .page-subtitle { text-align: center; color: #666; margin-bottom: 25px; font-size: 0.9em; }
+  .section-label { font-family: 'Berkshire Swash', serif; font-size: 1.1em; text-align: center; color: #555; margin: 35px 0 15px; letter-spacing: 1px; }
+
+  .row { display: flex; gap: 30px; max-width: 1400px; margin: 0 auto; align-items: flex-start; }
+  .col { flex: 1; min-width: 0; }
+
+  /* Mobile row: narrower columns */
+  .row-mobile { display: flex; gap: 30px; max-width: 1000px; margin: 0 auto; justify-content: center; }
+  .col-mobile { width: 375px; min-width: 320px; flex: none; }
+
+  .site-preview { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.12); margin-bottom: 20px; }
+  .preview-label { text-align: center; padding: 8px; font-family: 'Berkshire Swash', serif; font-size: 1em; background: #f0f0f0; border-bottom: 1px solid #ddd; }
+
+  /* ===== PALETTE B ===== */
+  .palette-b {
+    --teal: #4DD1C6;
+    --teal-hover: #2EA89E;
+    --magenta: #D14DAA;
+    --purple: #AA4DD1;
+    --purple-hover: #8B3AAF;
+    --body: #333333;
+    --secondary: #777777;
+    --light-bg: #F7F7F7;
+    --border: #E5E5E5;
+    --card-bg: #F7F7F7;
+    --white: #FFFFFF;
+    --heading-font: 'Berkshire Swash', Georgia, serif;
+    --body-font: 'Plus Jakarta Sans', Avenir, sans-serif;
+  }
+
+  /* ===== PALETTE C ===== */
+  .palette-c {
+    --teal: #4DD1C6;
+    --teal-hover: #2EA89E;
+    --magenta: #D14DAA;
+    --purple: #D14DAA;
+    --purple-hover: #C944A0;
+    --body: #2A2A2A;
+    --secondary: #777777;
+    --light-bg: #F0F8F8;
+    --border: #DCEAEA;
+    --card-bg: #F0F8F8;
+    --white: #FFFFFF;
+    --heading-font: 'Berkshire Swash', Georgia, serif;
+    --body-font: 'Plus Jakarta Sans', Avenir, sans-serif;
+  }
+
+  .palette-b, .palette-c { font-family: var(--body-font); color: var(--body); }
+
+  /* ===== DESKTOP LAYOUT ===== */
+  .p-header { background: var(--teal); padding: 8px 15px; display: flex; align-items: center; }
+  .p-logo { height: 36px; width: auto; }
+  .p-hamburger { margin-left: auto; width: 24px; height: 24px; filter: brightness(0) invert(1); }
+
+  .p-nav { display: flex; flex-wrap: wrap; gap: 2px; background: var(--white); padding: 0 15px 8px; }
+  .p-nav a { background: var(--teal); color: white; padding: 6px 10px; text-decoration: none; font-weight: 600; font-size: 0.78em; border-radius: 0 0 4px 4px; flex: 1; text-align: center; min-width: 70px; }
+  .p-nav a:hover { background: var(--teal-hover); }
+
+  .p-content { padding: 15px; }
+  .p-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  .p-content h2 { font-family: var(--heading-font); color: var(--magenta); font-size: 1.3em; margin: 15px 0 8px; font-weight: 400; }
+  .p-content h2:first-child { margin-top: 0; }
+  .p-content p { line-height: 1.65; margin-bottom: 12px; font-size: 0.88em; }
+
+  .p-cta { display: block; background: var(--purple); color: white; text-align: center; padding: 10px; text-decoration: none; font-weight: 700; font-size: 1.1em; border-radius: 6px; margin: 12px 0; }
+  .p-cta:hover { background: var(--purple-hover); }
+
+  .p-img { width: 100%; border-radius: 6px; margin: 8px 0; }
+
+  .p-hours { background: var(--light-bg); padding: 12px; border-radius: 8px; text-align: center; margin-top: 15px; }
+  .p-hours p { margin-bottom: 3px; font-size: 0.85em; }
+
+  .p-schedule-list { background: var(--card-bg); padding: 12px 15px; border-radius: 8px; border: 1px solid var(--border); margin-top: 10px; }
+  .p-schedule-list li { list-style: none; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 0.88em; }
+  .p-schedule-list li:last-child { border-bottom: none; }
+  .p-schedule-list li::before { content: "✓"; color: var(--teal); font-weight: bold; margin-right: 6px; }
+
+  .subtext { color: var(--secondary); font-size: 0.82em; }
+
+  .p-footer { text-align: center; padding: 15px; border-top: 1px solid var(--border); font-size: 0.78em; color: var(--secondary); margin-top: 10px; }
+
+  /* ===== MOBILE LAYOUT ===== */
+  .mobile .p-header { padding: 6px 12px; }
+  .mobile .p-logo { height: 30px; }
+  .mobile .p-hamburger { display: block; width: 22px; height: 22px; }
+  .mobile .p-nav { display: none; }
+  .mobile .p-content { padding: 12px; }
+  .mobile .p-grid { grid-template-columns: 1fr; gap: 10px; }
+  .mobile .p-content h2 { font-size: 1.15em; margin: 12px 0 6px; }
+  .mobile .p-content p { font-size: 0.85em; line-height: 1.55; }
+  .mobile .p-cta { font-size: 1em; padding: 12px 10px; border-radius: 8px; }
+  .mobile .p-img { margin: 6px 0; }
+  .mobile .p-hours { padding: 10px; }
+  .mobile .p-hours p { font-size: 0.82em; }
+  .mobile .p-schedule-list { padding: 10px 12px; }
+  .mobile .p-schedule-list li { font-size: 0.85em; padding: 7px 0; }
+  .mobile .p-footer { padding: 12px; font-size: 0.75em; }
+
+  .info-box { border-radius: 8px; padding: 12px; font-size: 0.82em; line-height: 1.5; color: #333; }
+
+  @media (max-width: 800px) {
+    .row { flex-direction: column; }
+    .row-mobile { flex-direction: column; align-items: center; }
+    .col-mobile { width: 100%; min-width: 0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Homepage — Color Palette Preview</h1>
+<p class="page-subtitle">Same layout, same content. Only the supporting colors change.</p>
+
+<!-- ============= DESKTOP VIEW ============= -->
+<div class="section-label">✦ Desktop</div>
+<div class="row">
+  <!-- OPTION B -->
+  <div class="col">
+    <div class="site-preview palette-b">
+      <div class="preview-label">B. Refined &amp; Intentional</div>
+
+      <div class="p-header">
+        <img src="/images/theme/logo.png" class="p-logo" alt="Logo" onerror="this.style.display='none'">
+        <img src="/images/theme/hamburger.svg.png" class="p-hamburger" alt="Menu" onerror="this.style.display='none'">
+      </div>
+      <div class="p-nav">
+        <a href="#">Home</a>
+        <a href="#">Services</a>
+        <a href="#">Locations</a>
+        <a href="#">Contact</a>
+        <a href="#">Estimate</a>
+        <a href="#">Specials</a>
+        <a href="#">Jobs</a>
+      </div>
+
+      <div class="p-content">
+        <div class="p-grid">
+          <div class="p-left">
+            <h2>Home and Office Cleaning Service</h2>
+            <p>We provide a positive, stress-free cleaning experience.</p>
+            <p>We clean homes, offices and garages! Our maids clean your house or office thoroughly, top to bottom.</p>
+
+            <a href="#" class="p-cta">Call Now! 480-279-6730</a>
+
+            <img src="/images/theme/mop.jpeg" class="p-img" alt="Cleaning" onerror="this.style.display='none'">
+
+            <p>Call today, and let us prove to you that we are the best cleaners in Arizona!</p>
+            <p>We will come to you, whether you are in Scottsdale, Queen Creek, Gilbert, Mesa, Chandler or elsewhere in the Phoenix valley.</p>
+
+            <h2>Cleaning Hours</h2>
+            <div class="p-hours">
+              <p>Monday-Friday: 8 AM-Close</p>
+              <p>Saturday by appointment</p>
+              <p>Closed Sunday</p>
+            </div>
+          </div>
+
+          <div class="p-right">
+            <img src="/images/theme/sofa.jpg" class="p-img" alt="Clean Sofa" onerror="this.style.display='none'">
+
+            <h2>Maid Schedules Available</h2>
+            <div class="p-schedule-list">
+              <li>Weekly</li>
+              <li>Bi-weekly Cleaning</li>
+              <li>One Time Cleaning</li>
+              <li>Clean Around your Schedule</li>
+              <li>Move In, Move Out Cleaning</li>
+              <li>Maid Service Gift Certificate</li>
+            </div>
+
+            <img src="/images/theme/clean-bathroom.jpg" class="p-img" alt="Clean Bathroom" onerror="this.style.display='none'">
+          </div>
+        </div>
+      </div>
+
+      <div class="p-footer">
+        &copy; 2023-2026 Yoli's Clean and Tidy. Mesa, AZ. All rights reserved.
+      </div>
+    </div>
+
+    <div class="info-box" style="background:#FFF8E1;">
+      <strong>✦ Cedar's pick</strong> — Purple buttons, warm gray cards + borders, #333 body text. Nav hover stays in teal family. Intentional, professional, clean.
+    </div>
+  </div>
+
+  <!-- OPTION C -->
+  <div class="col">
+    <div class="site-preview palette-c">
+      <div class="preview-label">C. Bolder but Subtle</div>
+
+      <div class="p-header">
+        <img src="/images/theme/logo.png" class="p-logo" alt="Logo" onerror="this.style.display='none'">
+        <img src="/images/theme/hamburger.svg.png" class="p-hamburger" alt="Menu" onerror="this.style.display='none'">
+      </div>
+      <div class="p-nav">
+        <a href="#">Home</a>
+        <a href="#">Services</a>
+        <a href="#">Locations</a>
+        <a href="#">Contact</a>
+        <a href="#">Estimate</a>
+        <a href="#">Specials</a>
+        <a href="#">Jobs</a>
+      </div>
+
+      <div class="p-content">
+        <div class="p-grid">
+          <div class="p-left">
+            <h2>Home and Office Cleaning Service</h2>
+            <p>We provide a positive, stress-free cleaning experience.</p>
+            <p>We clean homes, offices and garages! Our maids clean your house or office thoroughly, top to bottom.</p>
+
+            <a href="#" class="p-cta" style="background:#D14DAA;">Call Now! 480-279-6730</a>
+
+            <img src="/images/theme/mop.jpeg" class="p-img" alt="Cleaning" onerror="this.style.display='none'">
+
+            <p>Call today, and let us prove to you that we are the best cleaners in Arizona!</p>
+            <p>We will come to you, whether you are in Scottsdale, Queen Creek, Gilbert, Mesa, Chandler or elsewhere in the Phoenix valley.</p>
+
+            <h2>Cleaning Hours</h2>
+            <div class="p-hours" style="background:#F0F8F8;">
+              <p>Monday-Friday: 8 AM-Close</p>
+              <p>Saturday by appointment</p>
+              <p>Closed Sunday</p>
+            </div>
+          </div>
+
+          <div class="p-right">
+            <img src="/images/theme/sofa.jpg" class="p-img" alt="Clean Sofa" onerror="this.style.display='none'">
+
+            <h2>Maid Schedules Available</h2>
+            <div class="p-schedule-list" style="background:#F0F8F8; border-color:#DCEAEA;">
+              <li>Weekly</li>
+              <li>Bi-weekly Cleaning</li>
+              <li>One Time Cleaning</li>
+              <li>Clean Around your Schedule</li>
+              <li>Move In, Move Out Cleaning</li>
+              <li>Maid Service Gift Certificate</li>
+            </div>
+
+            <img src="/images/theme/clean-bathroom.jpg" class="p-img" alt="Clean Bathroom" onerror="this.style.display='none'">
+          </div>
+        </div>
+      </div>
+
+      <div class="p-footer">
+        &copy; 2023-2026 Yoli's Clean and Tidy. Mesa, AZ. All rights reserved.
+      </div>
+    </div>
+
+    <div class="info-box" style="background:#F0F8F8;">
+      <strong>✦ Alternative</strong> — Magenta buttons (matches headings), teal-tinted #F0F8F8 grays. One less color overall. Bolder but more cohesive.
+    </div>
+  </div>
+</div>
+
+<!-- ============= MOBILE VIEW ============= -->
+<div class="section-label">✦ Mobile (375px)</div>
+<div class="row-mobile">
+  <div class="col-mobile">
+    <div class="site-preview palette-b mobile">
+      <div class="preview-label">B. Refined — Mobile</div>
+
+      <div class="p-header">
+        <img src="/images/theme/logo.png" class="p-logo" alt="Logo" onerror="this.style.display='none'">
+        <img src="/images/theme/hamburger.svg.png" class="p-hamburger" alt="Menu" onerror="this.style.display='none'">
+      </div>
+      <div class="p-nav" style="display:none;">
+        <a href="#">Home</a>
+        <a href="#">Services</a>
+        <a href="#">Locations</a>
+        <a href="#">Contact</a>
+        <a href="#">Estimate</a>
+        <a href="#">Specials</a>
+        <a href="#">Jobs</a>
+      </div>
+
+      <div class="p-content">
+        <div class="p-grid">
+          <div>
+            <h2>Home and Office Cleaning Service</h2>
+            <p>We provide a positive, stress-free cleaning experience. We clean homes, offices and garages!</p>
+
+            <a href="#" class="p-cta">Call Now! 480-279-6730</a>
+
+            <img src="/images/theme/mop.jpeg" class="p-img" alt="Cleaning" onerror="this.style.display='none'">
+
+            <p>Call today, and let us prove to you that we are the best cleaners in Arizona!</p>
+            <p>We serve Scottsdale, Queen Creek, Gilbert, Mesa, Chandler and the Phoenix valley.</p>
+
+            <h2>Cleaning Hours</h2>
+            <div class="p-hours">
+              <p>Monday-Friday: 8 AM-Close</p>
+              <p>Saturday by appointment</p>
+              <p>Closed Sunday</p>
+            </div>
+
+            <img src="/images/theme/sofa.jpg" class="p-img" alt="Clean Sofa" onerror="this.style.display='none'">
+
+            <h2>Maid Schedules Available</h2>
+            <div class="p-schedule-list">
+              <li>Weekly</li>
+              <li>Bi-weekly Cleaning</li>
+              <li>One Time Cleaning</li>
+              <li>Clean Around your Schedule</li>
+              <li>Move In, Move Out Cleaning</li>
+              <li>Maid Service Gift Certificate</li>
+            </div>
+
+            <img src="/images/theme/clean-bathroom.jpg" class="p-img" alt="Clean Bathroom" onerror="this.style.display='none'">
+          </div>
+        </div>
+      </div>
+
+      <div class="p-footer">
+        &copy; 2023-2026 Yoli's Clean and Tidy. Mesa, AZ.
+      </div>
+    </div>
+  </div>
+
+  <div class="col-mobile">
+    <div class="site-preview palette-c mobile">
+      <div class="preview-label">C. Bolder — Mobile</div>
+
+      <div class="p-header">
+        <img src="/images/theme/logo.png" class="p-logo" alt="Logo" onerror="this.style.display='none'">
+        <img src="/images/theme/hamburger.svg.png" class="p-hamburger" alt="Menu" onerror="this.style.display='none'">
+      </div>
+      <div class="p-nav" style="display:none;">
+        <a href="#">Home</a>
+        <a href="#">Services</a>
+        <a href="#">Locations</a>
+        <a href="#">Contact</a>
+        <a href="#">Estimate</a>
+        <a href="#">Specials</a>
+        <a href="#">Jobs</a>
+      </div>
+
+      <div class="p-content">
+        <div class="p-grid">
+          <div>
+            <h2>Home and Office Cleaning Service</h2>
+            <p>We provide a positive, stress-free cleaning experience. We clean homes, offices and garages!</p>
+
+            <a href="#" class="p-cta" style="background:#D14DAA;">Call Now! 480-279-6730</a>
+
+            <img src="/images/theme/mop.jpeg" class="p-img" alt="Cleaning" onerror="this.style.display='none'">
+
+            <p>Call today, and let us prove to you that we are the best cleaners in Arizona!</p>
+            <p>We serve Scottsdale, Queen Creek, Gilbert, Mesa, Chandler and the Phoenix valley.</p>
+
+            <h2>Cleaning Hours</h2>
+            <div class="p-hours" style="background:#F0F8F8;">
+              <p>Monday-Friday: 8 AM-Close</p>
+              <p>Saturday by appointment</p>
+              <p>Closed Sunday</p>
+            </div>
+
+            <img src="/images/theme/sofa.jpg" class="p-img" alt="Clean Sofa" onerror="this.style.display='none'">
+
+            <h2>Maid Schedules Available</h2>
+            <div class="p-schedule-list" style="background:#F0F8F8; border-color:#DCEAEA;">
+              <li>Weekly</li>
+              <li>Bi-weekly Cleaning</li>
+              <li>One Time Cleaning</li>
+              <li>Clean Around your Schedule</li>
+              <li>Move In, Move Out Cleaning</li>
+              <li>Maid Service Gift Certificate</li>
+            </div>
+
+            <img src="/images/theme/clean-bathroom.jpg" class="p-img" alt="Clean Bathroom" onerror="this.style.display='none'">
+          </div>
+        </div>
+      </div>
+
+      <div class="p-footer">
+        &copy; 2023-2026 Yoli's Clean and Tidy. Mesa, AZ.
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
